@@ -1,0 +1,189 @@
+VERMELHO = "\033[31m"
+VERDE = "\033[32m"
+AMARELO = "\033[33m"
+AZUL = "\033[34m"
+RESET = "\033[0m"
+
+class Personagens:
+    def __init__(self, nome, vida, poder, dano, vida_maxima):
+        self.nome = nome
+        self.vida = vida
+        self.poder = poder
+        self.dano = dano
+        self.vida_maxima = vida
+    
+    def atacar(self, inimigo):
+        inimigo.vida -= self.dano
+        print(self.nome,"atacou", inimigo.nome)
+        print(inimigo.nome ,"agora tem",inimigo.vida,"HP")
+        if inimigo.vida<=0:
+            print(AMARELO + "Sucesso, Inimigo Derrotado" + RESET)
+        
+personagem0 = Personagens("Negrinho", 100, "Queimada", 25, 100)
+personagem1 = Personagens("Guerreiro", 80, "Fincada do lorde", 20, 80)
+personagem2 = Personagens("Buda das montanhas", 120, "Soco da paz", 30, 120)
+
+class Inimigos:
+    def __init__(self, nome, vida, poder, dano):
+        self.nome = nome
+        self.vida = vida
+        self.poder = poder
+        self.dano = dano
+    
+    def atacar(self, personagens):
+        personagens.vida -= self.dano
+        print(self.nome, "atacou",personagens.nome )
+        print(personagens.nome,"agora tem", personagens.vida,"HP")
+        if personagens.vida<=0:
+            print(AMARELO + "Voce foi derrotado" + RESET)
+    
+inimigo = Inimigos("globim", 100, "ataque globim", 25)
+
+def mostrar_personagens(personagem0, personagem1, personagem2):
+
+    print("╔══════════════════════════════════════════════════╗")
+    print("║              ESCOLHA SEU PERSONAGEM             ║")
+    print("╠══════════════════════════════════════════════════╣")
+    print("║                                                  ║")
+    print(f"║  [0] {personagem0.nome:<38}║")
+    print(f"║      Vida: {personagem0.vida:<31}║")
+    print(f"║      Poder: {personagem0.poder:<30}║")
+    print(f"║      Dano: {personagem0.dano:<31}║")
+    print("║                                                  ║")
+    print(f"║  [1] {personagem1.nome:<38}║")
+    print(f"║      Vida: {personagem1.vida:<31}║")
+    print(f"║      Poder: {personagem1.poder:<30}║")
+    print(f"║      Dano: {personagem1.dano:<31}║")
+    print("║                                                  ║")
+    print(f"║  [2] {personagem2.nome:<38}║")
+    print(f"║      Vida: {personagem2.vida:<31}║")
+    print(f"║      Poder: {personagem2.poder:<30}║")
+    print(f"║      Dano: {personagem2.dano:<31}║")
+    print("║                                                  ║")
+    print("╚══════════════════════════════════════════════════╝")
+
+mostrar_personagens(personagem0, personagem1, personagem2)
+
+class inimigosFortes:
+    def __init__(self, nome, vida, poder, dano):
+        self.nome = nome
+        self.vida = vida
+        self.poder = poder
+        self.dano = dano
+    def atacar(self, personagens):
+        personagens.vida -= self.dano
+        print(self.nome, "atacou", personagens.nome)
+        print(personagens.nome, "agora tem", personagens.vida,"HP")
+        if personagens.vida<=0:
+            print( AMARELO + "Voce foi derrotado" + RESET)
+inimigoforte = inimigosFortes("Cavaleiro", 120, "Cavalgada maluca", 50 )
+
+escolha = input("Escolha sua classe: ")
+
+if escolha == "0":
+    jogador = personagem0
+    
+elif escolha == "1":
+    jogador = personagem1
+    
+elif escolha == "2":
+    jogador = personagem2
+
+print()
+
+def mostrar_inimigos(inimigo, inimigoforte):
+
+    print("╔══════════════════════════════════════════════════╗")
+    print("║               ESCOLHA SEU INIMIGO               ║")
+    print("╠══════════════════════════════════════════════════╣")
+    print("║                                                  ║")
+    print(f"║  [0] {inimigo.nome:<38}║")
+    print(f"║      Vida: {inimigo.vida:<31}║")
+    print(f"║      Poder: {inimigo.poder:<30}║")
+    print(f"║      Dano: {inimigo.dano:<31}║")
+    print("║                                                  ║")
+    print(f"║  [1] {inimigoforte.nome:<38}║")
+    print(f"║      Vida: {inimigoforte.vida:<31}║")
+    print(f"║      Poder: {inimigoforte.poder:<30}║")
+    print(f"║      Dano: {inimigoforte.dano:<31}║")
+    print("║                                                  ║")
+    print("╚══════════════════════════════════════════════════╝")
+
+mostrar_inimigos(inimigo, inimigoforte)
+
+print()
+
+pergunta = input("Escolha o inimigo: ")
+if pergunta == "0":
+    inimigoescolhido = inimigo
+    print("Voce escolheu um inimigo" + VERDE + " fácil " + RESET)
+        
+        
+elif pergunta == "1":
+    inimigoescolhido = inimigoforte
+    print("Voce escolheu um inimigo" + VERMELHO + " dificil" + RESET)
+print()
+
+pocoes = 3
+
+def mostrar_combate(jogador, inimigo):
+
+    print("╔══════════════════════════════════════════════════╗")
+    print("║                  ⚔ COMBATE ⚔                    ║")
+    print("╠══════════════════════════════════════════════════╣")
+    print("║                                                  ║")
+    print("║  JOGADOR                         INIMIGO         ║")
+    print("║                                                  ║")
+    print("║  Nome:", jogador.nome, "                    Nome:", inimigo.nome)
+    print("║  HP:", jogador.vida, "/", jogador.vida_maxima,
+          "                  HP:", inimigo.vida)
+    print("║                                                  ║")
+    print("╠══════════════════════════════════════════════════╣")
+    print("║                    AÇÕES                         ║")
+    print("║                                                  ║")
+    print("║  [0] 🏃 Fugir                                   ║")
+    print("║  [1] ⚔ Atacar                                  ║")
+    print("║  [2] 🧪 Usar poção                              ║")
+    print("║                                                  ║")
+    print("╚══════════════════════════════════════════════════╝")
+
+
+while jogador.vida > 0 and inimigoescolhido.vida > 0:
+
+    mostrar_combate(jogador, inimigoescolhido)
+
+    combate = input("O que deseja? ")
+    print()
+
+    # 0 - FUGIR
+    if combate == "0":
+        print("Voce abandonou a batalha")
+        break
+
+    # 1 - ATACAR
+    elif combate == "1":
+        jogador.atacar(inimigoescolhido)
+
+        if inimigoescolhido.vida > 0:
+            inimigoescolhido.atacar(jogador)
+
+    # 2 - USAR POÇÃO
+    elif combate == "2":
+        print("As poçoes recuperam 30 de", VERMELHO + "HP" + RESET)
+        escolhausar = input("Deseja usar a poçao? ").lower()
+
+        if escolhausar in["sim", "si", "simm"]:
+
+            if pocoes > 0:
+                pocoes -= 1
+
+                if jogador.vida + 30 > jogador.vida_maxima:
+                    jogador.vida = jogador.vida_maxima
+                else:
+                    jogador.vida += 30
+
+                print("Voce recuperou", VERMELHO + "30 de hp" + RESET)
+                print("Sobraram", pocoes, "poçoes")
+
+            else:
+                print("Suas poçoes acabaram")
