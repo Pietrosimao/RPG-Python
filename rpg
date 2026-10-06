@@ -144,6 +144,7 @@ def mostrar_combate(jogador, inimigo):
     print("║  [0] 🏃 Fugir                                   ║")
     print("║  [1] ⚔ Atacar                                  ║")
     print("║  [2] 🧪 Usar poção                              ║")
+    print("║  [3] 🛡 Defender                                ║")
     print("║                                                  ║")
     print("╚══════════════════════════════════════════════════╝")
 
@@ -187,3 +188,12 @@ while jogador.vida > 0 and inimigoescolhido.vida > 0:
 
             else:
                 print("Suas poçoes acabaram")
+
+    # 3 - DEFENDER
+    elif combate == "3":
+        defesa = inimigoescolhido.dano / 2
+        jogador.vida -= defesa
+
+        print("Voce se defendeu")
+        print("O inimigo atacou e causou", defesa, "de dano")
+        
